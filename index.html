@@ -292,30 +292,36 @@
 
     .hero-images {
       position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      align-items: end;
+      display: flex;
+      justify-content: center;
     }
 
-    .hero-img-main {
-      grid-column: 1 / -1;
+    .hero-portrait-frame {
+      position: relative;
       width: 100%;
+      max-width: 380px;
       border-radius: var(--radius-lg);
+      padding: 0.7rem;
+      background: linear-gradient(160deg, #ffffff, #faf5ff);
+      box-shadow: 0 30px 60px rgba(30, 27, 75, 0.18);
+    }
+
+    .hero-portrait-frame::before {
+      content: "";
+      position: absolute;
+      inset: -14px;
+      border-radius: calc(var(--radius-lg) + 10px);
+      background: linear-gradient(135deg, var(--coral), var(--purple), var(--teal));
+      opacity: 0.18;
+      z-index: -1;
+    }
+
+    .hero-portrait {
+      width: 100%;
+      display: block;
+      border-radius: calc(var(--radius-lg) - 4px);
       object-fit: cover;
       aspect-ratio: 4/5;
-      max-height: 420px;
-      box-shadow: 0 20px 50px rgba(124, 58, 237, 0.2);
-      border: 4px solid #fff;
-    }
-
-    .hero-img-small {
-      width: 100%;
-      border-radius: var(--radius);
-      object-fit: cover;
-      aspect-ratio: 1;
-      box-shadow: var(--shadow);
-      border: 3px solid #fff;
     }
 
     .cert-badge {
@@ -485,47 +491,6 @@
 
     .stat-label { font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
     .stat-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
-
-    /* Gallery */
-    .gallery-section { background: #fff; }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .gallery-item {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      position: relative;
-      box-shadow: var(--shadow);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s;
-    }
-
-    .gallery-item:hover img { transform: scale(1.05); }
-
-    .gallery-item:first-child { grid-row: span 2; min-height: 380px; }
-    .gallery-item:not(:first-child) { min-height: 180px; }
-
-    .gallery-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 1rem;
-      background: linear-gradient(transparent, rgba(30,27,75,0.75));
-      color: #fff;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
 
     /* About */
     .about-grid {
@@ -1019,8 +984,7 @@
     }
 
     @media (max-width: 900px) {
-      .hero-grid, .about-grid, .contact-grid, .gallery-grid { grid-template-columns: 1fr; }
-      .gallery-item:first-child { grid-row: span 1; min-height: 280px; }
+      .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
       .hero-images { max-width: 400px; margin: 0 auto; }
       .package-card.featured { transform: none; }
 
@@ -1109,9 +1073,9 @@
       </div>
       <div class="hero-images">
         <div class="cert-badge">CRSP Certified</div>
-        <img src="assets/image16.jpeg" alt="Grace Nicole Mariano" class="hero-img-main" />
-        <img src="assets/image2.jpg" alt="Grace at work" class="hero-img-small" />
-        <img src="assets/image3.jpg" alt="Grace workspace" class="hero-img-small" />
+        <div class="hero-portrait-frame">
+          <img src="assets/grace-portrait.png" alt="Grace Nicole Mariano — professional portrait" class="hero-portrait" />
+        </div>
       </div>
     </div>
   </header>
@@ -1196,31 +1160,6 @@
           <div class="stat-number">100%</div>
           <div class="stat-label">Task Delivery Reliability</div>
           <div class="stat-desc">Clear communication, timely updates, consistent delivery</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="gallery-section section-wrap">
-    <div class="bg-letters" aria-hidden="true">
-      <span class="l1">ME</span>
-    </div>
-    <div class="container">
-      <span class="section-label">Gallery</span>
-      <h2 class="section-title">Meet Grace</h2>
-      <p class="section-lede">Professional, proactive, and ready to support your business.</p>
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="assets/image16.jpeg" alt="Grace Nicole Mariano — professional portrait" />
-          <div class="gallery-caption">Grace Nicole Mariano, CRSP</div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/image2.jpg" alt="Grace at work" />
-          <div class="gallery-caption">At work</div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/image3.jpg" alt="Grace workspace" />
-          <div class="gallery-caption">Workspace</div>
         </div>
       </div>
     </div>
